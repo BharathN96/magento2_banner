@@ -1,0 +1,45 @@
+<head>
+
+</head>
+<?php
+/* @var \Codilar\Banner\Block\BannerView $block */
+?>
+
+<?php
+$collection = $block->getImageData();
+//var_dump($data->getData());
+//var_dump($block->getImagePath());
+$imagePath = $block->getImagePath();
+foreach ($collection as $data)
+{
+
+    var_dump($data->getData('start_date'));
+    date_default_timezone_set('Asia/Kolkata');
+    $curentTime = date('Y-m-d H:i:s', strtotime($data->getData('start_date')));
+    //var_dump($startDate);
+    //var_dump($curentTime);
+    ?>
+    <div class="banner">
+        <div class="desktopimage" style=" position: relative;">
+            <img src="<?php echo $imagePath.$data->getData('desktop_image'); ?>"  width="300%" height="600px">
+                <div class="text-block" style="position: absolute; top: 120px; left: 50px; background-color: black; color: white; padding-left: 20px; padding-right: 20px;">
+                    <?php echo $data->getData('details')?>
+                </div>
+        </div>
+        <div class="mobileimage">
+            <img src="<?php echo $imagePath.$data->getData('mobile_image'); ?>" width="300%" height="600px">
+                <div class="text-block" style="position: absolute; top: 120px; left: 50px; background-color: black; color: white; padding-left: 20px; padding-right: 20px;">
+                    <?php echo $data->getData('details')?>
+                </div>
+        </div>
+        <div class="tabletimage">
+            <img src="<?php echo $imagePath.$data->getData('tablet_image'); ?>" width="300%" height="600px">
+                <div class="text-block" style="position: absolute; top: 120px; left: 50px; background-color: black; color: white; padding-left: 20px; padding-right: 20px;">
+                    <?php echo $data->getData('details')?>
+                </div>
+        </div>
+    </div>
+
+<?php
+}
+?>
